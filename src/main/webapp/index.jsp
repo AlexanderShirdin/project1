@@ -16,7 +16,7 @@
     <header>
         <nav class="head">
             <h1 class="title">Система управления студентами и их успеваемостью</h1>
-            <div><a href="./index.html">Logout</a></div>
+            <div><a href="index.jsp">Logout</a></div>
         </nav>
     </header>
     <main>
