@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -49,13 +51,15 @@
                             <th class="l_col3">Группа</th>
                             <th class="l_col4">Дата поступления</th>
                         </tr>
+                        <c:forEach items="${students}" var="st">
                         <tr>
                             <td class="l_col0"><label><input type="checkbox" name=""></label></td>
-                            <td class="l_col1">Сидоров</td>
-                            <td class="l_col2">Сидор</td>
-                            <td class="l_col3">КТ-21</td>
-                            <td class="l_col4">1/09/2011</td>
+                            <td class="l_col1">${st.surname}</td>
+                            <td class="l_col2">${st.name}</td>
+                            <td class="l_col3">${st.group}</td>
+                            <td class="l_col4"><fmt:formatDate pattern="dd/mm/yyyy" value="${st.date}"/></td>
                         </tr>
+                        </c:forEach>
                     </table>
                 </div>
             </div>
