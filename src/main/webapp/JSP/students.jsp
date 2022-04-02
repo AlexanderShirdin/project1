@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,23 +6,22 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./style.css">
     <title>Students List</title>
-    <link rel="stylesheet" href="./src/fonts/fonts.css">
-    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" href="../resources/fonts/fonts.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
 </head>
 <body>
 <div id="container">
     <header>
         <nav class="head">
             <h1 class="title">Система управления студентами и их успеваемостью</h1>
-            <div><a href="index.jsp">Logout</a></div>
+            <div><a href="/index.jsp">Logout</a></div>
         </nav>
     </header>
     <main>
         <section class="content">
             <div class="side_menu">
-                <div><a href="./title_page.html">На главную</a></div>
+                <div><a href="/home">На главную</a></div>
             </div>
             <div class="main">
                 <div class="button_group1">
