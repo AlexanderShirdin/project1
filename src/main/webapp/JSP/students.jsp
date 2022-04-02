@@ -57,7 +57,7 @@
                             <td class="l_col1">${st.surname}</td>
                             <td class="l_col2">${st.name}</td>
                             <td class="l_col3">${st.group}</td>
-                            <td class="l_col4"><fmt:formatDate pattern="dd/mm/yyyy" value="${st.date}"/></td>
+                            <td class="l_col4"><fmt:formatDate pattern="dd/MM/yyyy" value="${st.date}"/></td>
                         </tr>
                         </c:forEach>
                     </table>
