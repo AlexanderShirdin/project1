@@ -1,5 +1,6 @@
 package database;
 
+import entity.Discipline;
 import entity.Student;
 
 import java.sql.Connection;
@@ -32,5 +33,26 @@ public class DBManager implements IDBManager {
             e.printStackTrace();
         }
         return students;
+    }
+
+    @Override
+    public List<Discipline> getAllActiveDisciplines() {
+        ArrayList<Discipline> disciplines = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.88.98:3306/students_27?user=DC&password=Hhhh888*"); //localhost root
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from discipline where status =1;");
+            while (rs.next()) {
+                Discipline discipline = new Discipline();
+                discipline.setId(rs.getInt("id"));
+                discipline.setDiscipline(rs.getString("discipline"));
+                discipline.setStatus(1);
+                disciplines.add(discipline);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return disciplines;
     }
 }

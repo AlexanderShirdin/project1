@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -32,10 +33,12 @@
                                 <th class="ld_col0"></th>
                                 <th class="ld_col1">Наименование дисциплины</th>
                             </tr>
+                            <c:forEach items="${disciplines}" var="d">
                             <tr>
                                 <td class="ld_col0"><label><input type="checkbox" name=""></label></td>
-                                <td class="ld_col1">Высшая математика</td>
+                                <td class="ld_col1">${d.discipline}</td>
                             </tr>
+                            </c:forEach>
                         </table>
                     </div>
                     <div class="root_discipline">
