@@ -11,6 +11,7 @@
     <title>Students List</title>
     <link rel="stylesheet" href="../resources/fonts/fonts.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
+    <script src="../resources/js/function.js"></script>
 </head>
 <body>
 <div id="container">
@@ -31,15 +32,13 @@
                         <input class="button_student1" type="submit"
                                value="Просмотреть успеваемость выбранных студентов">
                     </form>
-                    <form action="./student_creating.html">
+                    <form action="/student-create">
                         <input class="button_student2" type="submit" value="Создать студента…">
                     </form>
                     <form action="./student_modifying.html">
                         <input class="button_student1" type="submit" value="Модифицировать выбранного студента…">
                     </form>
-                    <form action="">
-                        <input class="button_student2" type="submit" value="Удалить выбранных студентов">
-                    </form>
+                    <input class="button_student2" type="submit" value="Удалить выбранных студентов" onclick="deleteStudents()">
                 </div>
                 <div class="students">
                     <table class="list">
@@ -52,13 +51,13 @@
                             <th class="l_col4">Дата поступления</th>
                         </tr>
                         <c:forEach items="${students}" var="st">
-                        <tr>
-                            <td class="l_col0"><label><input type="checkbox" name=""></label></td>
-                            <td class="l_col1">${st.surname}</td>
-                            <td class="l_col2">${st.name}</td>
-                            <td class="l_col3">${st.group}</td>
-                            <td class="l_col4"><fmt:formatDate pattern="dd/MM/yyyy" value="${st.date}"/></td>
-                        </tr>
+                            <tr>
+                                <td class="l_col0"><label><input name="idStudent" type="checkbox" value="${st.id}"></label></td>
+                                <td class="l_col1">${st.surname}</td>
+                                <td class="l_col2">${st.name}</td>
+                                <td class="l_col3">${st.group}</td>
+                                <td class="l_col4"><fmt:formatDate pattern="dd/MM/yyyy" value="${st.date}"/></td>
+                            </tr>
                         </c:forEach>
                     </table>
                 </div>
@@ -70,4 +69,6 @@
     </footer>
 </div>
 </body>
+<form action="/student-delete" method="post" id="deleteForm">
+    <input type="hidden" id="deleteHidden" name="deleteHidden"></form>
 </html>

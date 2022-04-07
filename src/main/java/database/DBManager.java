@@ -36,6 +36,32 @@ public class DBManager implements IDBManager {
     }
 
     @Override
+    public void createStudent(String surname, String name, String group, String date) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.88.98:3306/students_27?user=DC&password=Hhhh888*"); //localhost
+            Statement stmt = conn.createStatement();
+            stmt.execute("INSERT INTO `student` (`surname`, `name`, `group`, `date`) VALUES ('" + surname + "', '" + name + "', '" + group + "', '" + date + "');");
+        } catch (
+                Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteStudent(String id) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.88.98:3306/students_27?user=DC&password=Hhhh888*"); //localhost
+            Statement stmt = conn.createStatement();
+            stmt.execute("UPDATE `student` SET `status` = '0' WHERE (`id` = '" + id + "');");
+        } catch (
+                Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public List<Discipline> getAllActiveDisciplines() {
         ArrayList<Discipline> disciplines = new ArrayList<>();
         try {
