@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "StudentsDeleteController", urlPatterns = "/student_deleting")
-public class StudentsDeleteController extends HttpServlet {
+@WebServlet(name = "DisciplinesDeleteController", urlPatterns = "/discipline_deleting")
+public class DisciplinesDeleteController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String ids = req.getParameter("deleteHidden");
@@ -18,8 +18,8 @@ public class StudentsDeleteController extends HttpServlet {
         String[] idsToDelete = ids.split(" ");
         DBManager manager = new DBManager();
         for (String id : idsToDelete) {
-            manager.deleteStudent(id);
+            manager.deleteDiscipline(id);
         }
-        resp.sendRedirect("/students");
+        resp.sendRedirect("/disciplines");
     }
 }

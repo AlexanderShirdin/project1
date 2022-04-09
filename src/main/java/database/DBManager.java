@@ -1,5 +1,6 @@
 package database;
 
+import constants.Constants;
 import entity.Discipline;
 import entity.Student;
 
@@ -16,7 +17,7 @@ public class DBManager implements IDBManager {
         ArrayList<Student> students = new ArrayList<>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.88.98:3306/students_27?user=DC&password=Hhhh888*"); //localhost
+            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from student where status =1;");
             while (rs.next()) {
@@ -39,7 +40,7 @@ public class DBManager implements IDBManager {
     public void createStudent(String surname, String name, String group, String date) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.88.98:3306/students_27?user=DC&password=Hhhh888*"); //localhost
+            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
             Statement stmt = conn.createStatement();
             stmt.execute("INSERT INTO `student` (`surname`, `name`, `group`, `date`) VALUES ('" + surname + "', '" + name + "', '" + group + "', '" + date + "');");
         } catch (
@@ -52,7 +53,7 @@ public class DBManager implements IDBManager {
     public void deleteStudent(String id) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.88.98:3306/students_27?user=DC&password=Hhhh888*"); //localhost
+            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
             Statement stmt = conn.createStatement();
             stmt.execute("UPDATE `student` SET `status` = '0' WHERE (`id` = '" + id + "');");
         } catch (
@@ -66,7 +67,7 @@ public class DBManager implements IDBManager {
         ArrayList<Discipline> disciplines = new ArrayList<>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.88.98:3306/students_27?user=DC&password=Hhhh888*"); //localhost root
+            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from discipline where status =1;");
             while (rs.next()) {
@@ -80,5 +81,32 @@ public class DBManager implements IDBManager {
             e.printStackTrace();
         }
         return disciplines;
+    }
+
+    @Override
+    public void createDiscipline(String discipline) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
+            Statement stmt = conn.createStatement();
+            stmt.execute("INSERT INTO `discipline` (`discipline`) VALUES ('" + discipline + "');");
+        } catch (
+                Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public void deleteDiscipline(String id) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
+            Statement stmt = conn.createStatement();
+            stmt.execute("UPDATE `discipline` SET `status` = '0' WHERE (`id` = '" + id + "');");
+        } catch (
+                Exception e) {
+            e.printStackTrace();
+        }
     }
 }

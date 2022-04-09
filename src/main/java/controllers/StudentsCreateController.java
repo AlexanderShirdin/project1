@@ -16,12 +16,12 @@ import java.util.Date;
 import java.util.Locale;
 
 
-@WebServlet(name = "StudentsCreateController", urlPatterns = "/student-create")
+@WebServlet(name = "StudentsCreateController", urlPatterns = "/student_creating")
 public class StudentsCreateController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("JSP/student-create.jsp").forward(req, resp);
+        req.getRequestDispatcher("JSP/student_creating.jsp").forward(req, resp);
     }
 
     @Override

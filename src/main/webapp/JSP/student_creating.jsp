@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="../resources/fonts/fonts.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="../resources/js/jquery-3.6.0.js"></script>
+    <script src="../resources/js/jquery-ui.js"></script>
     <script>
         $(function () {
             $("#datepicker").datepicker();
@@ -23,7 +23,7 @@
     <header>
         <nav class="head">
             <h1 class="title">Система управления студентами и их успеваемостью</h1>
-            <div><a href="./index.html">Logout</a></div>
+            <div><a href="/index.html">Logout</a></div>
         </nav>
     </header>
     <main>
@@ -35,7 +35,7 @@
             <div class="main">
                 <h2>Для создания студента заполните все поля и нажмите кнопку "Создать".</h2>
                 <div class="form_cm">
-                    <form action="/student-create" method="post">
+                    <form action="/student_creating" method="post">
                         <div class="line2">
                             <div>Фамилия</div>
                             <label>

@@ -14,5 +14,7 @@ public interface IDBManager {
 
     List<Discipline> getAllActiveDisciplines();
 
+    void createDiscipline(String discipline);
 
+    void deleteDiscipline(String id);
 }

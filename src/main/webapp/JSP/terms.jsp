@@ -56,7 +56,7 @@
                         </div>
                         <div class="root_terms">
                             <div class="button_group3">
-                                <form action="./term_creating.html">
+                                <form action="/term_creating">
                                     <input class="button_terms" type="submit" value="Создать семестр…">
                                 </form>
                                 <form action="./term_modifying.html">

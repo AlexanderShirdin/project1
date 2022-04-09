@@ -10,6 +10,7 @@
     <title>Disciplines List</title>
     <link rel="stylesheet" href="../resources/fonts/fonts.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
+    <script src="../resources/js/function.js"></script>
 </head>
 <body>
 <div id="container">
@@ -35,7 +36,7 @@
                             </tr>
                             <c:forEach items="${disciplines}" var="d">
                             <tr>
-                                <td class="ld_col0"><label><input type="checkbox" name=""></label></td>
+                                <td class="ld_col0"><label><input name="idDiscipline" type="checkbox" value="${d.id}"></label></td>
                                 <td class="ld_col1">${d.discipline}</td>
                             </tr>
                             </c:forEach>
@@ -43,16 +44,14 @@
                     </div>
                     <div class="root_discipline">
                         <div class="button_group2">
-                            <form action="./discipline_creating.html">
+                            <form action="/discipline_creating">
                                 <input class="button_discipline" type="submit" value="Создать дисциплину…">
                             </form>
                             <form action="./discipline_modifying.html">
                                 <input class="button_discipline" type="submit"
                                        value="Модифицировать выбранную дисциплину…">
                             </form>
-                            <form action="">
-                                <input class="button_discipline" type="submit" value="Удалить выбранную дисциплину…">
-                            </form>
+                                <input class="button_discipline" type="submit" value="Удалить выбранную дисциплину…" onclick="deleteDisciplines()">
                         </div>
                     </div>
                 </div>
@@ -64,4 +63,6 @@
     </footer>
 </div>
 </body>
+<form action="/discipline_deleting" method="post" id="deleteForm">
+    <input type="hidden" id="deleteHidden" name="deleteHidden"></form>
 </html>

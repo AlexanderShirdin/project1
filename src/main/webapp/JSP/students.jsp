@@ -32,10 +32,10 @@
                         <input class="button_student1" type="submit"
                                value="Просмотреть успеваемость выбранных студентов">
                     </form>
-                    <form action="/student-create">
+                    <form action="/student_creating">
                         <input class="button_student2" type="submit" value="Создать студента…">
                     </form>
-                    <form action="./student_modifying.html">
+                    <form action="/student_modifying">
                         <input class="button_student1" type="submit" value="Модифицировать выбранного студента…">
                     </form>
                     <input class="button_student2" type="submit" value="Удалить выбранных студентов" onclick="deleteStudents()">
@@ -69,6 +69,6 @@
     </footer>
 </div>
 </body>
-<form action="/student-delete" method="post" id="deleteForm">
+<form action="/student_deleting" method="post" id="deleteForm">
     <input type="hidden" id="deleteHidden" name="deleteHidden"></form>
 </html>
