@@ -35,9 +35,7 @@
                     <form action="/student_creating">
                         <input class="button_student2" type="submit" value="Создать студента…">
                     </form>
-                    <form action="/student_modifying">
-                        <input class="button_student1" type="submit" value="Модифицировать выбранного студента…">
-                    </form>
+                        <input class="button_student1" type="submit" value="Модифицировать выбранного студента…" onclick="modifyingStudents()">
                     <input class="button_student2" type="submit" value="Удалить выбранных студентов" onclick="deleteStudents()">
                 </div>
                 <div class="students">
@@ -70,5 +68,9 @@
 </div>
 </body>
 <form action="/student_deleting" method="post" id="deleteForm">
-    <input type="hidden" id="deleteHidden" name="deleteHidden"></form>
+    <input type="hidden" id="deleteHidden" name="deleteHidden">
+</form>
+<form action="/student_modifying" method="get" id="modifyForm">
+    <input type="hidden" id="modifyHidden" name="modifyHidden">
+</form>
 </html>

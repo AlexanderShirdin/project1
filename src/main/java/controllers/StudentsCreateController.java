@@ -31,6 +31,12 @@ public class StudentsCreateController extends HttpServlet {
         String group = req.getParameter("group");
         String dateFromUser = req.getParameter("date");
 
+        if (surname.isEmpty() || name.isEmpty() || group.isEmpty() || dateFromUser.isEmpty()) {
+            req.setAttribute("error", "1");
+            req.getRequestDispatcher("JSP/student_creating.jsp").forward(req, resp);
+            return;
+        }
+
         // String --> Date --> String
         DateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date date = null;

@@ -12,6 +12,8 @@ public interface IDBManager {
 
     void deleteStudent(String id);
 
+    Student getStudentById(String id);
+
     List<Discipline> getAllActiveDisciplines();
 
     void createDiscipline(String discipline);

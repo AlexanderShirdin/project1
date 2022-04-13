@@ -63,6 +63,9 @@
                         <input class="button_cm_student" type="submit" value="Создать">
                     </form>
                 </div>
+                <c: if test="${error eq '1'}">
+                <h4>Поля не должны быть пустыми!</h4>
+                </c:>
             </div>
         </section>
     </main>
