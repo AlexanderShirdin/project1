@@ -35,10 +35,11 @@
                                 <th class="ld_col1">Наименование дисциплины</th>
                             </tr>
                             <c:forEach items="${disciplines}" var="d">
-                            <tr>
-                                <td class="ld_col0"><label><input name="idDiscipline" type="checkbox" value="${d.id}"></label></td>
-                                <td class="ld_col1">${d.discipline}</td>
-                            </tr>
+                                <tr>
+                                    <td class="ld_col0"><label><input name="idDiscipline" type="checkbox"
+                                                                      value="${d.id}"></label></td>
+                                    <td class="ld_col1">${d.discipline}</td>
+                                </tr>
                             </c:forEach>
                         </table>
                     </div>
@@ -47,11 +48,8 @@
                             <form action="/discipline_creating">
                                 <input class="button_discipline" type="submit" value="Создать дисциплину…">
                             </form>
-                            <form action="./discipline_modifying.html">
-                                <input class="button_discipline" type="submit"
-                                       value="Модифицировать выбранную дисциплину…">
-                            </form>
-                                <input class="button_discipline" type="submit" value="Удалить выбранную дисциплину…" onclick="deleteDisciplines()">
+                                <input class="button_discipline" type="submit" value="Модифицировать выбранную дисциплину…" onclick="modifyDisciplines()">
+                            <input class="button_discipline" type="submit" value="Удалить выбранную дисциплину…" onclick="deleteDisciplines()">
                         </div>
                     </div>
                 </div>
@@ -64,5 +62,9 @@
 </div>
 </body>
 <form action="/discipline_deleting" method="post" id="deleteForm">
-    <input type="hidden" id="deleteHidden" name="deleteHidden"></form>
+    <input type="hidden" id="deleteHidden" name="deleteHidden">
+</form>
+<form action="/discipline_modifying" method="get" id="modifyForm">
+    <input type="hidden" id="modifyHidden" name="modifyHidden">
+</form>
 </html>

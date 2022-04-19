@@ -19,4 +19,6 @@ public interface IDBManager {
     void createDiscipline(String discipline);
 
     void deleteDiscipline(String id);
+
+    Discipline getDisciplineById(String id);
 }

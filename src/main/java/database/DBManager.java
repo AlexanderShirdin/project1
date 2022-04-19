@@ -132,4 +132,24 @@ public class DBManager implements IDBManager {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public Discipline getDisciplineById(String id) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from discipline where status =1 and id =" + id);
+            while (rs.next()) {
+                Discipline discipline = new Discipline();
+                discipline.setId(rs.getInt("id"));
+                discipline.setDiscipline(rs.getString("discipline"));
+                discipline.setStatus(1);
+                return discipline;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

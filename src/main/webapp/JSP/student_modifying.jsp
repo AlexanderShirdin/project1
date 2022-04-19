@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!doctype html>
 <html lang="en">
@@ -24,7 +25,7 @@
     <header>
         <nav class="head">
             <h1 class="title">Система управления студентами и их успеваемостью</h1>
-            <div><a href="/index.html">Logout</a></div>
+            <div><a href="/index.jsp">Logout</a></div>
         </nav>
     </header>
     <main>
@@ -36,16 +37,17 @@
             <div class="main">
                 <h2>Для модификации, введите новые значения и нажмите кнопку "Применить".</h2>
                 <div class="form_cm">
+                    <form action="/student_modifying" method="post">
                     <div class="line2">
                         <div>Фамилия</div>
                         <label>
-                            <input type="text" name="surname"  value="${student.surname}">
+                            <input type="text" name="surname" value="${student.surname}">
                         </label>
                     </div>
                     <div class="line2">
                         <div>Имя</div>
                         <label>
-                            <input type="text" name="name"  value="${student.name}">
+                            <input type="text" name="name" value="${student.name}">
                         </label>
                     </div>
                     <div class="line2">
@@ -57,16 +59,16 @@
                     <div class="line2">
                         <div>Дата поступления</div>
                         <label>
-                            <input type="text" name="date" id="datepicker" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${student.date}"/>">
+                            <input type="text" name="date" id="datepicker"
+                                   value="<fmt:formatDate pattern="dd/MM/yyyy" value="${student.date}"/>">
                         </label>
                     </div>
-                    <form action="">
                         <input class="button_cm_student" type="submit" value="Применить">
                     </form>
                 </div>
-                <c: if test="${error eq '1'}">
+                <c:if test="${error eq '1'}">
                     <h4>Поля не должны быть пустыми!</h4>
-                </c:>
+                </c:if>
             </div>
         </section>
     </main>

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -23,7 +24,7 @@
     <header>
         <nav class="head">
             <h1 class="title">Система управления студентами и их успеваемостью</h1>
-            <div><a href="/index.html">Logout</a></div>
+            <div><a href="/index.jsp">Logout</a></div>
         </nav>
     </header>
     <main>
@@ -63,9 +64,9 @@
                         <input class="button_cm_student" type="submit" value="Создать">
                     </form>
                 </div>
-                <c: if test="${error eq '1'}">
-                <h4>Поля не должны быть пустыми!</h4>
-                </c:>
+                <c:if test="${error eq '1'}">
+                    <h4>Поля не должны быть пустыми!</h4>
+                </c:if>
             </div>
         </section>
     </main>

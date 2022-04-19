@@ -7,7 +7,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Discipline Creating</title>
+    <title>Discipline Modifying</title>
     <link rel="stylesheet" href="../resources/fonts/fonts.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
 </head>
@@ -26,16 +26,17 @@
                 <div><a href="javascript:history.back()">Назад</a></div>
             </div>
             <div class="main">
-                <h2>Для того чтобы создать новую дисциплину заполните все поля и нажмите кнопку "Создать":</h2>
+                <h2>Для того чтобы модифицировать дисциплину введите новое значение поля и нажмите кнопку
+                    "Применить":</h2>
                 <div class="form_cm">
-                    <form action="/discipline_creating" method="post">
-                        <div class="line3">
-                            <div>Название</div>
-                            <label>
-                                <input type="text" name="discipline">
-                            </label>
-                        </div>
-                        <input class="button_cm_discipline" type="submit" value="Создать">
+                    <form action="/discipline_modifying" method="post">
+                    <div class="line3">
+                        <div>Название</div>
+                        <label>
+                            <input type="text" name="discipline" value="${discipline.discipline}">
+                        </label>
+                    </div>
+                        <input class="button_cm_discipline" type="submit" value="Применить">
                     </form>
                 </div>
                 <c:if test="${error eq '1'}">

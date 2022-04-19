@@ -21,6 +21,12 @@ public class DisciplinesCreateController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String discipline = req.getParameter("discipline");
 
+        if (discipline.isEmpty()) {
+            req.setAttribute("error", "1");
+            req.getRequestDispatcher("JSP/discipline_creating.jsp").forward(req, resp);
+            return;
+        }
+
         DBManager manager = new DBManager();
         manager.createDiscipline(discipline);
 

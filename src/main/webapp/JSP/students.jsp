@@ -35,7 +35,7 @@
                     <form action="/student_creating">
                         <input class="button_student2" type="submit" value="Создать студента…">
                     </form>
-                        <input class="button_student1" type="submit" value="Модифицировать выбранного студента…" onclick="modifyingStudents()">
+                        <input class="button_student1" type="submit" value="Модифицировать выбранного студента…" onclick="modifyStudents()">
                     <input class="button_student2" type="submit" value="Удалить выбранных студентов" onclick="deleteStudents()">
                 </div>
                 <div class="students">

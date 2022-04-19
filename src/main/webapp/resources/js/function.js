@@ -13,7 +13,7 @@ function deleteStudents() {
     document.getElementById('deleteForm').submit();
 }
 
-function modifyingStudents() {
+function modifyStudents() {
     var checkedCheckboxs = document.querySelectorAll('input[name=idStudent]:checked')
     if (checkedCheckboxs.length == 0) {
         alert("Выберите студента!!!")
@@ -41,4 +41,19 @@ function deleteDisciplines() {
     }
     document.getElementById("deleteHidden").value = ids;
     document.getElementById('deleteForm').submit();
+}
+
+function modifyDisciplines() {
+    var checkedCheckboxs = document.querySelectorAll('input[name=idDiscipline]:checked')
+    if (checkedCheckboxs.length == 0) {
+        alert("Выберите дисциплину!!!")
+        return;
+    }
+    if (checkedCheckboxs.length > 1) {
+        alert("Выберите только одну дисциплину!!!")
+        return;
+    }
+    var id = checkedCheckboxs[0].value;
+    document.getElementById("modifyHidden").value = id;
+    document.getElementById('modifyForm').submit();
 }
