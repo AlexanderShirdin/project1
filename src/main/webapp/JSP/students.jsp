@@ -28,10 +28,8 @@
             </div>
             <div class="main">
                 <div class="button_group1">
-                    <form action="./student_progress.html">
                         <input class="button_student1" type="submit"
-                               value="Просмотреть успеваемость выбранных студентов">
-                    </form>
+                               value="Просмотреть успеваемость выбранных студентов" onclick="progressStudents()">
                     <form action="/student_creating">
                         <input class="button_student2" type="submit" value="Создать студента…">
                     </form>
@@ -72,5 +70,8 @@
 </form>
 <form action="/student_modifying" method="get" id="modifyForm">
     <input type="hidden" id="modifyHidden" name="modifyHidden">
+</form>
+<form action="/student_progress" method="get" id="progressForm">
+<input type="hidden" id="progressHidden" name="progressHidden">
 </form>
 </html>

@@ -38,6 +38,7 @@
                 <h2>Для модификации, введите новые значения и нажмите кнопку "Применить".</h2>
                 <div class="form_cm">
                     <form action="/student_modifying" method="post">
+                        <input type="hidden" name="id" value="${student.id}">
                     <div class="line2">
                         <div>Фамилия</div>
                         <label>

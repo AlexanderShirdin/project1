@@ -2,6 +2,7 @@ package database;
 
 import entity.Discipline;
 import entity.Student;
+import entity.Term;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public interface IDBManager {
 
     Student getStudentById(String id);
 
+    void modifyStudent(String id, String surname, String name, String group, String dateToDatabase);
     List<Discipline> getAllActiveDisciplines();
 
     void createDiscipline(String discipline);
@@ -21,4 +23,11 @@ public interface IDBManager {
     void deleteDiscipline(String id);
 
     Discipline getDisciplineById(String id);
+
+
+    List<Term> getAllActiveTerms();
+
+    List<Discipline> getDisciplinesByTerm(int id);
+
+    List<Integer> getMarksByTerm(int id);
 }

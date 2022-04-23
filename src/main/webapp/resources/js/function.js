@@ -28,6 +28,21 @@ function modifyStudents() {
     document.getElementById('modifyForm').submit();
 }
 
+function progressStudents() {
+    var checkedCheckboxs = document.querySelectorAll('input[name=idStudent]:checked')
+    if (checkedCheckboxs.length == 0) {
+        alert("Выберите студента!!!")
+        return;
+    }
+    if (checkedCheckboxs.length > 1) {
+        alert("Выберите только одного студента!!!")
+        return;
+    }
+    var id = checkedCheckboxs[0].value;
+    document.getElementById("progressHidden").value = id;
+    document.getElementById('progressForm').submit();
+}
+
 function deleteDisciplines() {
     var checkedCheckboxs = document.querySelectorAll('input[name=idDiscipline]:checked')
     if (checkedCheckboxs.length == 0) {
