@@ -1,7 +1,7 @@
-function deleteStudents() {
+﻿function deleteStudents() {
     var checkedCheckboxs = document.querySelectorAll('input[name=idStudent]:checked')
     if (checkedCheckboxs.length == 0) {
-        alert("Выберите хотя бы одного студента!!!")
+        alert("Выберите хотя бы одного студента!")
         return;
     }
     // 1 2 5 7 - String
@@ -16,11 +16,11 @@ function deleteStudents() {
 function modifyStudents() {
     var checkedCheckboxs = document.querySelectorAll('input[name=idStudent]:checked')
     if (checkedCheckboxs.length == 0) {
-        alert("Выберите студента!!!")
+        alert("Выберите студента!")
         return;
     }
     if (checkedCheckboxs.length > 1) {
-        alert("Выберите только одного студента!!!")
+        alert("Выберите только одного студента!")
         return;
     }
     var id = checkedCheckboxs[0].value;
@@ -31,11 +31,11 @@ function modifyStudents() {
 function progressStudents() {
     var checkedCheckboxs = document.querySelectorAll('input[name=idStudent]:checked')
     if (checkedCheckboxs.length == 0) {
-        alert("Выберите студента!!!")
+        alert("Выберите студента!")
         return;
     }
     if (checkedCheckboxs.length > 1) {
-        alert("Выберите только одного студента!!!")
+        alert("Выберите только одного студента!")
         return;
     }
     var id = checkedCheckboxs[0].value;
@@ -46,7 +46,7 @@ function progressStudents() {
 function deleteDisciplines() {
     var checkedCheckboxs = document.querySelectorAll('input[name=idDiscipline]:checked')
     if (checkedCheckboxs.length == 0) {
-        alert("Выберите хотя бы одну дисциплину!!!")
+        alert("Выберите хотя бы одну дисциплину!")
         return;
     }
     // 1 2 5 7 - String
@@ -61,11 +61,11 @@ function deleteDisciplines() {
 function modifyDisciplines() {
     var checkedCheckboxs = document.querySelectorAll('input[name=idDiscipline]:checked')
     if (checkedCheckboxs.length == 0) {
-        alert("Выберите дисциплину!!!")
+        alert("Выберите дисциплину!")
         return;
     }
     if (checkedCheckboxs.length > 1) {
-        alert("Выберите только одну дисциплину!!!")
+        alert("Выберите только одну дисциплину!")
         return;
     }
     var id = checkedCheckboxs[0].value;

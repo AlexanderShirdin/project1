@@ -16,6 +16,7 @@ public interface IDBManager {
     Student getStudentById(String id);
 
     void modifyStudent(String id, String surname, String name, String group, String dateToDatabase);
+
     List<Discipline> getAllActiveDisciplines();
 
     void createDiscipline(String discipline);
@@ -23,6 +24,11 @@ public interface IDBManager {
     void deleteDiscipline(String id);
 
     Discipline getDisciplineById(String id);
+
+    void modifyDiscipline(String id, String discipline);
+
+
+
 
 
     List<Term> getAllActiveTerms();

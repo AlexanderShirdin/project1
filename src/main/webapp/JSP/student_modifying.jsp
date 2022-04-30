@@ -39,31 +39,31 @@
                 <div class="form_cm">
                     <form action="/student_modifying" method="post">
                         <input type="hidden" name="id" value="${student.id}">
-                    <div class="line2">
-                        <div>Фамилия</div>
-                        <label>
-                            <input type="text" name="surname" value="${student.surname}">
-                        </label>
-                    </div>
-                    <div class="line2">
-                        <div>Имя</div>
-                        <label>
-                            <input type="text" name="name" value="${student.name}">
-                        </label>
-                    </div>
-                    <div class="line2">
-                        <div>Группа</div>
-                        <label>
-                            <input type="text" name="group" value="${student.group}">
-                        </label>
-                    </div>
-                    <div class="line2">
-                        <div>Дата поступления</div>
-                        <label>
-                            <input type="text" name="date" id="datepicker"
-                                   value="<fmt:formatDate pattern="dd/MM/yyyy" value="${student.date}"/>">
-                        </label>
-                    </div>
+                        <div class="line2">
+                            <div>Фамилия</div>
+                            <label>
+                                <input type="text" name="surname" value="${student.surname}">
+                            </label>
+                        </div>
+                        <div class="line2">
+                            <div>Имя</div>
+                            <label>
+                                <input type="text" name="name" value="${student.name}">
+                            </label>
+                        </div>
+                        <div class="line2">
+                            <div>Группа</div>
+                            <label>
+                                <input type="text" name="group" value="${student.group}">
+                            </label>
+                        </div>
+                        <div class="line2">
+                            <div>Дата поступления</div>
+                            <label>
+                                <input type="text" name="date" id="datepicker"
+                                       value="<fmt:formatDate pattern="dd/MM/yyyy" value="${student.date}"/>">
+                            </label>
+                        </div>
                         <input class="button_cm_student" type="submit" value="Применить">
                     </form>
                 </div>

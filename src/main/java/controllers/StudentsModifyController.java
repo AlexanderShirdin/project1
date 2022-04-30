@@ -41,21 +41,21 @@ public class StudentsModifyController extends HttpServlet {
             return;
         }
 
-            DateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
-            Date date = null;
-            try {
-                date = format.parse(dateFromUser);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String dateToDatabase = formatter.format(date);
-
-            DBManager manager = new DBManager();
-            manager.modifyStudent(id, surname, name, group, dateToDatabase);
-
-            resp.sendRedirect("/students");
+        DateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date date = null;
+        try {
+            date = format.parse(dateFromUser);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateToDatabase = formatter.format(date);
+
+        DBManager manager = new DBManager();
+        manager.modifyStudent(id, surname, name, group, dateToDatabase);
+
+        resp.sendRedirect("/students");
     }
+}
 

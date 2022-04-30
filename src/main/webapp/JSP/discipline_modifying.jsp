@@ -30,12 +30,13 @@
                     "Применить":</h2>
                 <div class="form_cm">
                     <form action="/discipline_modifying" method="post">
-                    <div class="line3">
-                        <div>Название</div>
-                        <label>
-                            <input type="text" name="discipline" value="${discipline.discipline}">
-                        </label>
-                    </div>
+                        <input type="hidden" name="id" value="${discipline.id}">
+                        <div class="line3">
+                            <div>Название</div>
+                            <label>
+                                <input type="text" name="discipline" value="${discipline.discipline}">
+                            </label>
+                        </div>
                         <input class="button_cm_discipline" type="submit" value="Применить">
                     </form>
                 </div>

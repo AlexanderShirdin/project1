@@ -87,6 +87,19 @@ public class DBManager implements IDBManager {
     }
 
     @Override
+    public void modifyStudent(String id, String surname, String name, String group, String dateToDatabase) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
+            Statement stmt = conn.createStatement();
+            stmt.execute("UPDATE `student` SET `surname` = '" + surname + "', `name` = '" + name + "', `group` = '" + group + "', `date` = '" + dateToDatabase + "' WHERE (`id` = '" + id + "');");
+        } catch (
+                Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public List<Discipline> getAllActiveDisciplines() {
         ArrayList<Discipline> disciplines = new ArrayList<>();
         try {
@@ -119,7 +132,6 @@ public class DBManager implements IDBManager {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public void deleteDiscipline(String id) {
@@ -155,6 +167,20 @@ public class DBManager implements IDBManager {
     }
 
     @Override
+    public void modifyDiscipline(String id, String discipline) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
+            Statement stmt = conn.createStatement();
+            stmt.execute("UPDATE `discipline` SET `discipline` = '" + discipline + "' WHERE (`id` = '" + id + "');");
+        } catch (
+                Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
     public List<Term> getAllActiveTerms() {
         ArrayList<Term> terms = new ArrayList<>();
         try {
@@ -163,7 +189,7 @@ public class DBManager implements IDBManager {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from term where status =1;");
             while (rs.next()) {
-                Term term  = new Term();
+                Term term = new Term();
                 term.setId(rs.getInt("id"));
                 term.setName(rs.getString("name"));
                 terms.add(term);
@@ -183,9 +209,9 @@ public class DBManager implements IDBManager {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT d.id, d.discipline FROM term_discipline as td\n" +
                     "left join discipline as d on td.id_discipline = d.id\n" +
-                    "where td.id_term = 2 and d.status = 1");
+                    "where td.id_term = " + id + " and d.status = 1");
             while (rs.next()) {
-                Discipline discipline  = new Discipline();
+                Discipline discipline = new Discipline();
                 discipline.setId(rs.getInt("id"));
                 discipline.setDiscipline(rs.getString("discipline"));
                 disciplines.add(discipline);
@@ -198,33 +224,23 @@ public class DBManager implements IDBManager {
 
     @Override
     public List<Integer> getMarksByTerm(int id) {
-        ArrayList<Integer> marks = new ArrayList<>();
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT d.id, d.discipline FROM term_discipline as td\n" +
-                    "left join discipline as d on td.id_discipline = d.id\n" +
-                    "where td.id_term = 2 and d.status = 1");
-            while (rs.next()) {
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return disciplines;
+//        ArrayList<Integer> marks = new ArrayList<>();
+//        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
+//            Statement stmt = conn.createStatement();
+//            ResultSet rs = stmt.executeQuery("SELECT d.id, d.discipline FROM term_discipline as td\n" +
+//                    "left join discipline as d on td.id_discipline = d.id\n" +
+//                    "where td.id_term = 2 and d.status = 1");
+//            while (rs.next()) {
+//
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return disciplines;
+        return null;
     }
 
-    @Override
-    public void modifyStudent(String id, String surname, String name, String group, String dateToDatabase) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
-            Statement stmt = conn.createStatement();
-            stmt.execute("UPDATE `student` SET `surname` = '" + surname + "', `name` = '" + name + "', `group` = '" + group + "', `date` = '" + dateToDatabase + "' WHERE (`id` = '" + id + "');");
-        } catch (
-                Exception e) {
-            e.printStackTrace();
-        }
-    }
+
 }
