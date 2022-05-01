@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,33 +7,30 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login page</title>
-    <link rel="stylesheet" href="./resources/fonts/fonts.css">
-    <link rel="stylesheet" type="text/css" href="./resources/css/style.css">
+    <title>Title page</title>
+    <link rel="stylesheet" href="/resources/fonts/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 </head>
 <body>
 <div id="container">
     <header>
-        <h1>Система управления студентами и их успеваемостью</h1>
+        <nav class="head">
+            <h1 class="title">Система управления студентами и их успеваемостью</h1>
+            <c:choose>
+                <c:when test="${isLogin eq 1}">
+                    <div><a href="/logout">${login}, Logout</a></div>
+                </c:when>
+                <c:otherwise>
+                    <div><a href="/login">Logout</a></div>
+                </c:otherwise>
+            </c:choose>
+        </nav>
     </header>
     <main>
-        <section class="form_log">
-            <h2 class="log_title">Вход в систему</h2>
-            <div class="line">
-                <div>Логин</div>
-                <label>
-                    <input type="text">
-                </label>
-            </div>
-            <div class="line">
-                <div>Пароль</div>
-                <label>
-                    <input type="text">
-                </label>
-            </div>
-            <form action="">
-                <input class="button_enter" type="submit" value="Войти">
-            </form>
+        <section class="menu_title">
+            <a href="/students">Студенты</a>
+            <a href="/disciplines">Дисциплины</a>
+            <a href="/terms">Семестры</a>
         </section>
     </main>
     <footer>

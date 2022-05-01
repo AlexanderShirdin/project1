@@ -18,7 +18,14 @@
     <header>
         <nav class="head">
             <h1 class="title">Система управления студентами и их успеваемостью</h1>
-            <div><a href="/index.jsp">Logout</a></div>
+            <c:choose>
+                <c:when test="${isLogin eq 1}">
+                    <div><a href="/logout">${login}, Logout</a></div>
+                </c:when>
+                <c:otherwise>
+                    <div><a href="/login">Logout</a></div>
+                </c:otherwise>
+            </c:choose>
         </nav>
     </header>
     <main>
@@ -30,12 +37,14 @@
                 <div class="button_group1">
                         <input class="button_student1" type="submit"
                                value="Просмотреть успеваемость выбранных студентов" onclick="progressStudents()">
+                   <c:if test="${role eq 1}">
                     <form action="/student_creating">
                         <input class="button_student2" type="submit" value="Создать студента…">
                     </form>
                         <input class="button_student1" type="submit" value="Модифицировать выбранного студента…" onclick="modifyStudents()">
                     <input class="button_student2" type="submit" value="Удалить выбранных студентов" onclick="deleteStudents()">
                 </div>
+                </c:if>
                 <div class="students">
                     <table class="list">
                         <caption>Список студентов</caption>

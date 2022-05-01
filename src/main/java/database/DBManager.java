@@ -9,8 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class DBManager implements IDBManager {
     @Override
@@ -223,24 +222,43 @@ public class DBManager implements IDBManager {
     }
 
     @Override
-    public List<Integer> getMarksByTerm(int id) {
-//        ArrayList<Integer> marks = new ArrayList<>();
-//        try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
-//            Statement stmt = conn.createStatement();
-//            ResultSet rs = stmt.executeQuery("SELECT d.id, d.discipline FROM term_discipline as td\n" +
-//                    "left join discipline as d on td.id_discipline = d.id\n" +
-//                    "where td.id_term = 2 and d.status = 1");
-//            while (rs.next()) {
-//
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return disciplines;
-        return null;
+    public Map<Discipline, Integer> getMarksByTerm(int idTerm, String idStudent) {
+        Map<Discipline, Integer> marks = new LinkedHashMap<>();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT d.id, d.discipline, m.mark FROM mark as m\n" +
+                    "left join term_discipline as td on m.id_term_discipline=td.id\n" +
+                    "left join discipline as d on td.id_discipline=d.id\n" +
+                    "where d.status=1 and m.id_students=" + idStudent + " and td.id_term= " + idTerm);
+            while (rs.next()) {
+                Discipline discipline = new Discipline();
+                discipline.setId(rs.getInt("id"));
+                discipline.setDiscipline(rs.getString("discipline"));
+                marks.put(discipline, rs.getInt("mark"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return marks;
     }
 
-
+    @Override
+    public boolean canLogin(String login, String password, String role) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM user_role as ur\n" +
+                    "left join user as u on ur.id_user=u.id\n" +
+                    "where u.login='" + login + "' and u.password='" + password + "' and ur.id_role=" + role);
+            while (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

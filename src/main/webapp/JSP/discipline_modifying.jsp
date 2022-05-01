@@ -16,7 +16,14 @@
     <header>
         <nav class="head">
             <h1 class="title">Система управления студентами и их успеваемостью</h1>
-            <div><a href="/index.jsp">Logout</a></div>
+            <c:choose>
+                <c:when test="${isLogin eq 1}">
+                    <div><a href="/logout">${login}, Logout</a></div>
+                </c:when>
+                <c:otherwise>
+                    <div><a href="/login">Logout</a></div>
+                </c:otherwise>
+            </c:choose>
         </nav>
     </header>
     <main>

@@ -5,6 +5,7 @@ import entity.Student;
 import entity.Term;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IDBManager {
     List<Student> getAllActiveStudents();
@@ -29,11 +30,12 @@ public interface IDBManager {
 
 
 
-
-
     List<Term> getAllActiveTerms();
 
     List<Discipline> getDisciplinesByTerm(int id);
 
-    List<Integer> getMarksByTerm(int id);
+    Map<Discipline, Integer> getMarksByTerm(int idTerm, String idStudent);
+
+
+    boolean canLogin(String login, String password, String role);
 }
