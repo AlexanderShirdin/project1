@@ -24,12 +24,12 @@ public class LoginController extends HttpServlet {
         String role = req.getParameter("role");
 
         DBManager manager = new DBManager();
-        if(manager.canLogin(login, password,role)){
+        if (manager.canLogin(login, password, role)) {
             req.getSession().setAttribute("role", role);
             req.getSession().setAttribute("login", login);
             req.getSession().setAttribute("isLogin", 1);
-            resp.sendRedirect("/");
-        }else{
+            resp.sendRedirect("/home");
+        } else {
             req.setAttribute("error", "1");
             req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
         }

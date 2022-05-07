@@ -7,32 +7,48 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Title page</title>
+    <title>Login page</title>
     <link rel="stylesheet" href="/resources/fonts/fonts.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 </head>
 <body>
 <div id="container">
     <header>
-        <nav class="head">
-            <h1 class="title">Система управления студентами и их успеваемостью</h1>
-            <c:choose>
-                <c:when test="${isLogin eq 1}">
-                    <div><a href="/logout">${login}, Logout</a></div>
-                </c:when>
-                <c:otherwise>
-                    <div><a href="/login">Logout</a></div>
-                </c:otherwise>
-            </c:choose>
-        </nav>
+        <h1>Система управления студентами и их успеваемостью</h1>
     </header>
     <main>
-        <section class="menu_title">
-            <a href="/students">Студенты</a>
-            <a href="/disciplines">Дисциплины</a>
-            <a href="/terms">Семестры</a>
+        <section class="form_log">
+            <h2 class="log_title">Вход в систему</h2>
+            <form action="/login" method="post">
+                <div class="line">
+                    <div>Логин</div>
+                    <label>
+                        <input type="text" name="login">
+                    </label>
+                </div>
+                <div class="line">
+                    <div>Пароль</div>
+                    <label>
+                        <input type="text" name="password">
+                    </label>
+                </div>
+                <div class="line">
+                    <div>Права</div>
+                    <label>
+                        <select name="role">
+                            <option value="3">Студент</option>
+                            <option value="2">Учитель</option>
+                            <option value="1">Администратор</option>
+                        </select>
+                    </label>
+                </div>
+                <input class="button_enter" type="submit" value="Войти">
+            </form>
         </section>
     </main>
+    <c:if test="${error eq '1'}">
+        <h4>Неверный логин или пароль!</h4>
+    </c:if>
     <footer>
         <div>&copy; 2022 Alex Black</div>
     </footer>

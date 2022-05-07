@@ -17,38 +17,38 @@
         <h1>Система управления студентами и их успеваемостью</h1>
     </header>
     <main>
+
         <section class="form_log">
             <h2 class="log_title">Вход в систему</h2>
             <form action="/login" method="post">
-            <div class="line">
-                <div>Логин</div>
-                <label>
-                    <input type="text" name="login">
-                </label>
-            </div>
-            <div class="line">
-                <div>Пароль</div>
-                <label>
-                    <input type="text" name="password">
-                </label>
-            </div>
-            <div class="line">
-                <div>Выберите роль</div>
-                <label>
-                    <select name="role">
-                        <option value="3">Студент</option>
-                        <option value="2">Учитель</option>
-                        <option value="1">Администратор</option>
-                    </select>
-                </label>
-            </div>
-
+                <div class="line">
+                    <div>Логин</div>
+                    <label>
+                        <input type="text" name="login">
+                    </label>
+                </div>
+                <div class="line">
+                    <div>Пароль</div>
+                    <label>
+                        <input type="text" name="password">
+                    </label>
+                </div>
+                <div class="line">
+                    <div>Права</div>
+                    <label>
+                        <select name="role">
+                            <option value="3">Студент</option>
+                            <option value="2">Учитель</option>
+                            <option value="1">Администратор</option>
+                        </select>
+                    </label>
+                </div>
                 <input class="button_enter" type="submit" value="Войти">
             </form>
         </section>
     </main>
     <c:if test="${error eq '1'}">
-        <h4>Неверный логин или пароль или роль!</h4>
+        <h4>Неверный логин или пароль!</h4>
     </c:if>
     <footer>
         <div>&copy; 2022 Alex Black</div>

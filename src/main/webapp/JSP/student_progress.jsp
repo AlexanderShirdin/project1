@@ -17,14 +17,17 @@
     <header>
         <nav class="head">
             <h1 class="title">Система управления студентами и их успеваемостью</h1>
-            <c:choose>
-                <c:when test="${isLogin eq 1}">
-                    <div><a href="/logout">${login}, Logout</a></div>
-                </c:when>
-                <c:otherwise>
-                    <div><a href="/login">Logout</a></div>
-                </c:otherwise>
-            </c:choose>
+            <div class="login">
+                <c:choose>
+                    <c:when test="${isLogin eq 1}">
+                        <div><p>Привет, ${login}!</p></div>
+                        <div><a href="/logout">Logout</a></div>
+                    </c:when>
+                    <c:otherwise>
+                        <div><a href="/login">Logout</a></div>
+                    </c:otherwise>
+                </c:choose>
+            </div>
         </nav>
     </header>
     <main>
@@ -60,43 +63,43 @@
                                 <th class="lm_col1">Оценка</th>
                             </tr>
                             <tr>
-                            <c:forEach items="${disciplines}" var="d" varStatus="loop">
+
+                                <c:forEach items="${disciplines}" var="d" varStatus="loop">
                                     <td class="lm_col0">${d.discipline}</td>
-                            </c:forEach>
-
-
-                            <c:forEach items="${marks}" var="m">
-                                    <td class="lm_col1">${m}</td>
-                            </c:forEach>
+                                </c:forEach>
                             </tr>
-<%--                                <tr>--%>
-                                        <%--                                <td class="lm_col1"><c:out value="${marks.get(0)}" /></td>--%>
-<%--                                </tr>--%>
+                            <tr>
+                                <c:forEach items="${marks}" var="m">
+                                    <td class="lm_col1">${m}</td>
+                                </c:forEach>
+                            </tr>
 
+                            <%--                                <tr>--%>
+                            <%--                                <td class="lm_col1"><c:out value="${marks.get(0)}" /></td>--%>
+                            <%--                                </tr>--%>
 
                         </table>
                     </div>
                     <div class="term_average_mark">
                         <div class="term">
                             Выбрать семестр
+                            <form action="/student_progress" method="get">
                             <label>
-                                <form action="/student_progress" method="get">
                                     <input type="hidden" name="progressHidden" value="${student.id}">
-                                <select name="idSelectedTerm">
-                                    <c:forEach items="${terms}" var="t">
-                                        <c:choose>
-                                            <c:when test="${t.id eq selectedTerm.id}">
-                                                <option selected value="${t.id}">${t.name}</option>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <option value="${t.id}">${t.name}</option>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </c:forEach>
-                                </select>
+                                    <select name="idSelectedTerm">
+                                        <c:forEach items="${terms}" var="t">
+                                            <c:choose>
+                                                <c:when test="${t.id eq selectedTerm.id}">
+                                                    <option selected value="${t.id}">${t.name}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${t.id}">${t.name}</option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </select>
                             </label>
-
-                                <input class="button_term" type="submit" value="Выбрать">
+                            <input class="button_term" type="submit" value="Выбрать">
                             </form>
                         </div>
                         <div class="average_mark">

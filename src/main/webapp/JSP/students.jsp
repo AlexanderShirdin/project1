@@ -18,14 +18,17 @@
     <header>
         <nav class="head">
             <h1 class="title">Система управления студентами и их успеваемостью</h1>
-            <c:choose>
-                <c:when test="${isLogin eq 1}">
-                    <div><a href="/logout">${login}, Logout</a></div>
-                </c:when>
-                <c:otherwise>
-                    <div><a href="/login">Logout</a></div>
-                </c:otherwise>
-            </c:choose>
+            <div class="login">
+                <c:choose>
+                    <c:when test="${isLogin eq 1}">
+                        <div><p>Привет, ${login}!</p></div>
+                        <div><a href="/logout">Logout</a></div>
+                    </c:when>
+                    <c:otherwise>
+                        <div><a href="/login">Logout</a></div>
+                    </c:otherwise>
+                </c:choose>
+            </div>
         </nav>
     </header>
     <main>
@@ -35,21 +38,27 @@
             </div>
             <div class="main">
                 <div class="button_group1">
-                        <input class="button_student1" type="submit"
-                               value="Просмотреть успеваемость выбранных студентов" onclick="progressStudents()">
-                   <c:if test="${role eq 1}">
+                    <c:if test="${role eq 1 or role eq 2}">
+                    <input class="button_student1" type="submit"
+                           value="Просмотреть успеваемость выбранных студентов" onclick="progressStudents()">
                     <form action="/student_creating">
                         <input class="button_student2" type="submit" value="Создать студента…">
                     </form>
-                        <input class="button_student1" type="submit" value="Модифицировать выбранного студента…" onclick="modifyStudents()">
-                    <input class="button_student2" type="submit" value="Удалить выбранных студентов" onclick="deleteStudents()">
+                    </c:if>
+                    <c:if test="${role eq 1}">
+                    <input class="button_student1" type="submit" value="Модифицировать выбранного студента…"
+                           onclick="modifyStudents()">
+                    <input class="button_student2" type="submit" value="Удалить выбранных студентов"
+                           onclick="deleteStudents()">
+                    </c:if>
                 </div>
-                </c:if>
                 <div class="students">
                     <table class="list">
                         <caption>Список студентов</caption>
                         <tr>
+                            <c:if test="${role eq 1 or role eq 2}">
                             <th class="l_col0"></th>
+                            </c:if>
                             <th class="l_col1">Фамилия</th>
                             <th class="l_col2">Имя</th>
                             <th class="l_col3">Группа</th>
@@ -57,7 +66,9 @@
                         </tr>
                         <c:forEach items="${students}" var="st">
                             <tr>
+                                <c:if test="${role eq 1 or role eq 2}">
                                 <td class="l_col0"><label><input name="idStudent" type="checkbox" value="${st.id}"></label></td>
+                                </c:if>
                                 <td class="l_col1">${st.surname}</td>
                                 <td class="l_col2">${st.name}</td>
                                 <td class="l_col3">${st.group}</td>
@@ -81,6 +92,6 @@
     <input type="hidden" id="modifyHidden" name="modifyHidden">
 </form>
 <form action="/student_progress" method="get" id="progressForm">
-<input type="hidden" id="progressHidden" name="progressHidden">
+    <input type="hidden" id="progressHidden" name="progressHidden">
 </form>
 </html>
