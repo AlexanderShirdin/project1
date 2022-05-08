@@ -60,24 +60,18 @@
                         <table class="list">
                             <tr>
                                 <th class="lm_col0">Дисциплина</th>
+                                <c:if test="${haveMarks eq 1}">
                                 <th class="lm_col1">Оценка</th>
+                                </c:if>
                             </tr>
+                            <c:forEach items="${marks}" var="m" varStatus="loop">
                             <tr>
-
-                                <c:forEach items="${disciplines}" var="d" varStatus="loop">
-                                    <td class="lm_col0">${d.discipline}</td>
-                                </c:forEach>
+                                    <td class="lm_col0">${m.discipline.discipline}</td>
+                                <c:if test="${m.mark ne -1}">
+                                    <td class="lm_col1">${m.mark}</td>
+                                </c:if>
                             </tr>
-                            <tr>
-                                <c:forEach items="${marks}" var="m">
-                                    <td class="lm_col1">${m}</td>
-                                </c:forEach>
-                            </tr>
-
-                            <%--                                <tr>--%>
-                            <%--                                <td class="lm_col1"><c:out value="${marks.get(0)}" /></td>--%>
-                            <%--                                </tr>--%>
-
+                            </c:forEach>
                         </table>
                     </div>
                     <div class="term_average_mark">

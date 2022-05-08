@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -40,18 +41,28 @@
                         <div class="line4">
                             <div>Выбрать семестр</div>
                             <label>
-                                <select>
-                                    <option value="">Семестр 1</option>
-                                </select>
+                                <form action="/terms" method="get">
+                                    <select name="idSelectedTerm">
+                                        <c:forEach items="${terms}" var="t">
+                                            <c:choose>
+                                                <c:when test="${t.id eq selectedTerm.id}">
+                                                    <option selected value="${t.id}">${t.name}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${t.id}">${t.name}</option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </select>
                             </label>
                         </div>
-                        <form action="">
-                            <input class="button_term" type="submit" value="Выбрать">
+
+                        <input class="button_term" type="submit" value="Выбрать">
                         </form>
                     </div>
                     <div class="term_duration">
                         <h2>Длительность семестра:</h2>
-                        <h2>24 недели</h2>
+                        <h2>${selectedTerm.duration}</h2>
                     </div>
                     <h2 class="list_dt">Список дисциплин семестра</h2>
                     <div class="terms_section2">
@@ -60,14 +71,16 @@
                                 <tr>
                                     <th class="lt_col0">Наименование дисциплины</th>
                                 </tr>
-                                <tr>
-                                    <td class="lt_col0">Высшая математика</td>
-                                </tr>
+                                <c:forEach items="${disciplines}" var="d">
+                                    <tr>
+                                        <td class="lt_col0">${d.discipline}</td>
+                                    </tr>
+                                </c:forEach>
                             </table>
                         </div>
                         <div class="root_terms">
                             <div class="button_group3">
-                                <form action="/term_creating">
+                                <form action="/term_creating" method="get">
                                     <input class="button_terms" type="submit" value="Создать семестр…">
                                 </form>
                                 <form action="./term_modifying.html">

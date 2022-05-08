@@ -2,6 +2,7 @@ package controllers;
 
 import database.DBManager;
 import entity.Discipline;
+import entity.Mark;
 import entity.Student;
 import entity.Term;
 import services.MarksService;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -48,18 +50,21 @@ public class StudentsProgressController extends HttpServlet {
 
 //        List<Discipline> discipline = manager.getDisciplinesByTerm(selectedTerm.getId());
 
-        Map<Discipline, Integer> marks = manager.getMarksByTerm(selectedTerm.getId(), id);
+        List<Mark> marks = manager.getMarksByTerm(selectedTerm.getId(), id);
         if (marks.isEmpty()) {
             List<Discipline> disciplines = manager.getDisciplinesByTerm(selectedTerm.getId());
-            req.setAttribute("disciplines", disciplines);
+            for (Discipline d : disciplines) {
+                Mark mark = new Mark();
+                mark.setDiscipline(d);
+                marks.add(mark);
+            }
         } else {
-            req.setAttribute("disciplines", marks.keySet());
-            req.setAttribute("marks", marks.values());
-            double average = MarksService.getAverageMarks(marks.values());
+            req.setAttribute("haveMarks",1);
+            double average = MarksService.getAverageMarks(marks);
             req.setAttribute("average", average);
         }
+        req.setAttribute("marks",marks);
         req.setAttribute("student", student);
-
         req.getRequestDispatcher("JSP/student_progress.jsp").forward(req, resp);
     }
 }

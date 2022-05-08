@@ -1,13 +1,15 @@
 package services;
 
+import entity.Mark;
+
 import java.util.Collection;
 
 public class MarksService {
 
-    public static double getAverageMarks(Collection<Integer> marks) {
+    public static double getAverageMarks(Collection<Mark> marks) {
         double summaMarks = 0;
-        for (int mark : marks) {
-            summaMarks = summaMarks + mark;
+        for (Mark mark : marks) {
+            summaMarks = summaMarks + mark.getMark();
         }
         return summaMarks / marks.size();
     }

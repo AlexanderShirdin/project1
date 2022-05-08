@@ -2,6 +2,7 @@ package database;
 
 import constants.Constants;
 import entity.Discipline;
+import entity.Mark;
 import entity.Student;
 import entity.Term;
 
@@ -27,7 +28,7 @@ public class DBManager implements IDBManager {
                 student.setName(rs.getString("name"));
                 student.setGroup(rs.getString("group"));
                 student.setDate(rs.getDate("date"));
-                student.setStatus(1);
+//                student.setStatus(1);
                 students.add(student);
             }
         } catch (Exception e) {
@@ -110,7 +111,7 @@ public class DBManager implements IDBManager {
                 Discipline discipline = new Discipline();
                 discipline.setId(rs.getInt("id"));
                 discipline.setDiscipline(rs.getString("discipline"));
-                discipline.setStatus(1);
+//                discipline.setStatus(1);
                 disciplines.add(discipline);
             }
         } catch (Exception e) {
@@ -191,6 +192,7 @@ public class DBManager implements IDBManager {
                 Term term = new Term();
                 term.setId(rs.getInt("id"));
                 term.setName(rs.getString("name"));
+                term.setDuration(rs.getString("duration"));
                 terms.add(term);
             }
         } catch (Exception e) {
@@ -222,8 +224,8 @@ public class DBManager implements IDBManager {
     }
 
     @Override
-    public Map<Discipline, Integer> getMarksByTerm(int idTerm, String idStudent) {
-        Map<Discipline, Integer> marks = new LinkedHashMap<>();
+    public List<Mark> getMarksByTerm(int idTerm, String idStudent) {
+        ArrayList<Mark> marks = new ArrayList<>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
@@ -236,7 +238,10 @@ public class DBManager implements IDBManager {
                 Discipline discipline = new Discipline();
                 discipline.setId(rs.getInt("id"));
                 discipline.setDiscipline(rs.getString("discipline"));
-                marks.put(discipline, rs.getInt("mark"));
+                Mark mark = new Mark();
+                mark.setMark(rs.getInt("mark"));
+                mark.setDiscipline(discipline);
+                marks.add(mark);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -260,5 +265,42 @@ public class DBManager implements IDBManager {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public String getLastTermName() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM term order by id desc limit 1;");
+            while (rs.next()) {
+                return rs.getString("name");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void createNewTerm(String newName, String duration, String[] ids) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
+            Statement stmt = conn.createStatement();
+            stmt.execute("INSERT INTO `term` (`name`, `duration`) VALUES ('" + newName + "', '" + duration + "');");
+
+            ResultSet rs = stmt.executeQuery("SELECT last_insert_id() as id");
+            int idTerm = 0;
+            while (rs.next()) {
+                idTerm = rs.getInt("id");
+            }
+
+            for (String idDisc : ids) {
+                stmt.execute("INSERT INTO `term_discipline` (`id_term`, `id_discipline`) VALUES ('" + idTerm + "', '" + idDisc + "');");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

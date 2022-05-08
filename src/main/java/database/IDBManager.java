@@ -1,6 +1,7 @@
 package database;
 
 import entity.Discipline;
+import entity.Mark;
 import entity.Student;
 import entity.Term;
 
@@ -34,8 +35,12 @@ public interface IDBManager {
 
     List<Discipline> getDisciplinesByTerm(int id);
 
-    Map<Discipline, Integer> getMarksByTerm(int idTerm, String idStudent);
+    List<Mark> getMarksByTerm(int idTerm, String idStudent);
 
 
     boolean canLogin(String login, String password, String role);
+
+    String getLastTermName();
+
+    void createNewTerm(String newName, String duration, String[] ids);
 }
