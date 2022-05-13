@@ -31,7 +31,7 @@
                         <div><a href="/logout">Logout</a></div>
                     </c:when>
                     <c:otherwise>
-                        <div><a href="/login">Logout</a></div>
+                        <div><a href="/login">Login</a></div>
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -81,7 +81,7 @@
         </section>
     </main>
     <footer>
-        <div>&copy; 2022 Alex Black</div>
+        <div>&copy; 2022 Alexander Shirdin</div>
     </footer>
 </div>
 </body>

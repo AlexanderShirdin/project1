@@ -24,7 +24,7 @@
                         <div><a href="/logout">Logout</a></div>
                     </c:when>
                     <c:otherwise>
-                        <div><a href="/login">Logout</a></div>
+                        <div><a href="/login">Login</a></div>
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -54,11 +54,10 @@
                                             </c:choose>
                                         </c:forEach>
                                     </select>
+                                    <input class="button_term" type="submit" value="Выбрать">
+                                </form>
                             </label>
                         </div>
-
-                        <input class="button_term" type="submit" value="Выбрать">
-                        </form>
                     </div>
                     <div class="term_duration">
                         <h2>Длительность семестра:</h2>
@@ -80,15 +79,20 @@
                         </div>
                         <div class="root_terms">
                             <div class="button_group3">
-                                <form action="/term_creating" method="get">
-                                    <input class="button_terms" type="submit" value="Создать семестр…">
-                                </form>
-                                <form action="./term_modifying.html">
-                                    <input class="button_terms" type="submit" value="Модифицировать текущий семестр…">
-                                </form>
-                                <form action="">
-                                    <input class="button_terms" type="submit" value="Удалить текущий семестр…">
-                                </form>
+                                <c:if test="${role eq 1 or role eq 2}">
+                                    <form action="/term_creating" method="get">
+                                        <input class="button_terms" type="submit" value="Создать семестр…">
+                                    </form>
+                                </c:if>
+                                <c:if test="${role eq 1}">
+                                    <form action="./term_modifying.html">
+                                        <input class="button_terms" type="submit"
+                                               value="Модифицировать текущий семестр…">
+                                    </form>
+                                    <form action="">
+                                        <input class="button_terms" type="submit" value="Удалить текущий семестр…">
+                                    </form>
+                                </c:if>
                             </div>
                         </div>
                     </div>
@@ -97,7 +101,7 @@
         </section>
     </main>
     <footer>
-        <div>&copy; 2022 Alex Black</div>
+        <div>&copy; 2022 Alexander Shirdin</div>
     </footer>
 </div>
 </body>

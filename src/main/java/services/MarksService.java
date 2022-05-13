@@ -7,10 +7,10 @@ import java.util.Collection;
 public class MarksService {
 
     public static double getAverageMarks(Collection<Mark> marks) {
-        double summaMarks = 0;
+        double summMarks = 0;
         for (Mark mark : marks) {
-            summaMarks = summaMarks + mark.getMark();
+            summMarks = summMarks + mark.getMark();
         }
-        return summaMarks / marks.size();
+        return summMarks / marks.size();
     }
 }

@@ -24,7 +24,7 @@
                         <div><a href="/logout">Logout</a></div>
                     </c:when>
                     <c:otherwise>
-                        <div><a href="/login">Logout</a></div>
+                        <div><a href="/login">Login</a></div>
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -43,7 +43,7 @@
                     <div class="line5">
                         <div>Длительность (в неделях)</div>
                         <label>
-                            <input name="duration" type="text">
+                            <input name="duration" type="text" value="24 недели">
                         </label>
                     </div>
                         <div class="line5">
@@ -63,7 +63,7 @@
         </section>
     </main>
     <footer>
-        <div>&copy; 2022 Alex Black</div>
+        <div>&copy; 2022 Alexander Shirdin</div>
     </footer>
 </div>
 </body>

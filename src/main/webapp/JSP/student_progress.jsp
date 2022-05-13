@@ -24,7 +24,7 @@
                         <div><a href="/logout">Logout</a></div>
                     </c:when>
                     <c:otherwise>
-                        <div><a href="/login">Logout</a></div>
+                        <div><a href="/login">Login</a></div>
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -61,16 +61,16 @@
                             <tr>
                                 <th class="lm_col0">Дисциплина</th>
                                 <c:if test="${haveMarks eq 1}">
-                                <th class="lm_col1">Оценка</th>
+                                    <th class="lm_col1">Оценка</th>
                                 </c:if>
                             </tr>
                             <c:forEach items="${marks}" var="m" varStatus="loop">
-                            <tr>
+                                <tr>
                                     <td class="lm_col0">${m.discipline.discipline}</td>
-                                <c:if test="${m.mark ne -1}">
-                                    <td class="lm_col1">${m.mark}</td>
-                                </c:if>
-                            </tr>
+                                    <c:if test="${m.mark ne -1}">
+                                        <td class="lm_col1">${m.mark}</td>
+                                    </c:if>
+                                </tr>
                             </c:forEach>
                         </table>
                     </div>
@@ -78,7 +78,7 @@
                         <div class="term">
                             Выбрать семестр
                             <form action="/student_progress" method="get">
-                            <label>
+                                <label>
                                     <input type="hidden" name="progressHidden" value="${student.id}">
                                     <select name="idSelectedTerm">
                                         <c:forEach items="${terms}" var="t">
@@ -92,8 +92,8 @@
                                             </c:choose>
                                         </c:forEach>
                                     </select>
-                            </label>
-                            <input class="button_term" type="submit" value="Выбрать">
+                                </label>
+                                <input class="button_term" type="submit" value="Выбрать">
                             </form>
                         </div>
                         <div class="average_mark">
@@ -106,7 +106,7 @@
         </section>
     </main>
     <footer>
-        <div>&copy; 2022 Alex Black</div>
+        <div>&copy; 2022 Alexander Shirdin</div>
     </footer>
 </div>
 </body>

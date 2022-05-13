@@ -468,8 +468,7 @@ h3 {
 }
 
 .line4 {
-    width: 350px;
-    margin-right: 10px;
+    width: 445px;
     display: flex;
     justify-content: space-between;
 }
@@ -477,6 +476,12 @@ h3 {
 .line4 div {
     display: flex;
     align-items: flex-end;
+}
+
+.line4 form{
+    width: 285px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .line4 select {

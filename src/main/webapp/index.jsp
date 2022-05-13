@@ -46,11 +46,14 @@
             </form>
         </section>
     </main>
+    <h4>Права "Администратор", "Учитель", "Студент" - Login: admin, Password: 123</h4>
+    <h4>Права "Учитель", "Студент" - Login: teacher, Password: 123</h4>
+    <h4>Права "Студент" - Login: student, Password: 123</h4>
     <c:if test="${error eq '1'}">
         <h4>Неверный логин или пароль!</h4>
     </c:if>
     <footer>
-        <div>&copy; 2022 Alex Black</div>
+        <div>&copy; 2022 Alexander Shirdin</div>
     </footer>
 </div>
 </body>
