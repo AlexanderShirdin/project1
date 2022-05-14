@@ -210,7 +210,7 @@ public class DBManager implements IDBManager {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT d.id, d.discipline FROM term_discipline as td\n" +
                     "left join discipline as d on td.id_discipline = d.id\n" +
-                    "where td.id_term = " + id + " and d.status = 1");
+                    "where td.id_term = " + id + " and d.status = 1 and td.status = '1'");
             while (rs.next()) {
                 Discipline discipline = new Discipline();
                 discipline.setId(rs.getInt("id"));
@@ -298,6 +298,57 @@ public class DBManager implements IDBManager {
 
             for (String idDisc : ids) {
                 stmt.execute("INSERT INTO `term_discipline` (`id_term`, `id_discipline`) VALUES ('" + idTerm + "', '" + idDisc + "');");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteTerm(String idTerm) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
+            Statement stmt = conn.createStatement();
+            stmt.execute("UPDATE `term` SET `status` = '0' WHERE (`id` = '" + idTerm + "');");
+            stmt.execute("UPDATE `term_discipline` SET `status` = '0' WHERE (`id_term` = '" + idTerm + "');");
+
+        } catch (
+                Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public Term getTermById(String idTerm) {
+        Term term = new Term();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from term where status =1 and id=" + idTerm);
+            while (rs.next()) {
+                term.setId(rs.getInt("id"));
+                term.setName(rs.getString("name"));
+                term.setDuration(rs.getString("duration"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return term;
+    }
+
+    @Override
+    public void modifyTerm(String idTermModify, String duration, String[] idsDisc) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.DB_URL_CONNECTION);
+            Statement stmt = conn.createStatement();
+            stmt.execute("UPDATE `term` SET `duration` = '" + duration + "' WHERE (`id` = '" + idTermModify + "');");
+            stmt.execute("UPDATE `term_discipline` SET `status` = '0' WHERE (`id_term` = '" + idTermModify + "');");
+
+            for (String idDisc : idsDisc) {
+                stmt.execute("INSERT INTO `term_discipline` (`id_term`, `id_discipline`) VALUES ('" + idTermModify + "', '" + idDisc + "');");
             }
         } catch (Exception e) {
             e.printStackTrace();

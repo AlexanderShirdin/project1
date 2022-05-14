@@ -43,4 +43,10 @@ public interface IDBManager {
     String getLastTermName();
 
     void createNewTerm(String newName, String duration, String[] ids);
+
+    void deleteTerm(String idTerm);
+
+    Term getTermById(String idTerm);
+
+    void modifyTerm(String idTermModify, String duration, String[] idsDisc);
 }
