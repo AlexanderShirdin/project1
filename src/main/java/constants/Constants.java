@@ -8,4 +8,3 @@ public interface Constants {
     // remote
     //     String DB_URL_CONNECTION = "jdbc:mysql://127.0.0.1:3306/students_27?user=java27&password=Hhhh888*";
 }
-
