@@ -312,7 +312,6 @@ public class DBManager implements IDBManager {
             Statement stmt = conn.createStatement();
             stmt.execute("UPDATE `term` SET `status` = '0' WHERE (`id` = '" + idTerm + "');");
             stmt.execute("UPDATE `term_discipline` SET `status` = '0' WHERE (`id_term` = '" + idTerm + "');");
-
         } catch (
                 Exception e) {
             e.printStackTrace();

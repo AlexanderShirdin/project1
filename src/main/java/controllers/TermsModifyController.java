@@ -17,7 +17,7 @@ public class TermsModifyController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String idTerm = req.getParameter("idTermToModifying");
+        String idTerm = req.getParameter("idTermToModify");
         DBManager manager = new DBManager();
         Term term = manager.getTermById(idTerm);
         List<Discipline> disciplines = manager.getAllActiveDisciplines();

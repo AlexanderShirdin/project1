@@ -86,7 +86,7 @@
                                 </c:if>
                                 <c:if test="${role eq 1}">
                                     <form action="/term_modifying" method="get">
-                                        <input type="hidden" name="idTermToModifying" value="${selectedTerm.id}">
+                                        <input type="hidden" name="idTermToModify" value="${selectedTerm.id}">
                                         <input class="button_terms" type="submit" value="Модифицировать текущий семестр…">
                                     </form>
                                     <form action="/term_deleting" method="get">
